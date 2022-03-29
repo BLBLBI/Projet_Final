@@ -24,12 +24,13 @@ namespace Partie1
             return compteID;
         }
 
-        public void Depot(double montant)
+        public bool Depot(double montant)
         {
             if (montant <= 0)
-                throw new Exception("Montant erroné");
+                return false;
 
             solde += montant;
+            return true;
         }
 
         public bool Retrait(double montant)
@@ -40,7 +41,7 @@ namespace Partie1
 
             if (LimiteRetrait(montant))
                 return false;
-                //throw new Exception("Limite de retrait atteinte");
+            //throw new Exception("Limite de retrait atteinte");
 
             solde -= montant;
             return true;
@@ -54,14 +55,11 @@ namespace Partie1
             if (montant > retraitMax)
                 return true;
 
-            //TODO: retrait uniquement
             while (i < 10 && i <= historique.Count)
             {
-                if (historique[historique.Count - i].statut == Transaction.Status.OK)
-                {
-                    limite += historique[historique.Count - i].GetMontant();
-                    i++;
-                }
+                limite += historique[historique.Count - i].GetMontant();
+                i++;
+
             }
 
             limite += montant;
@@ -69,7 +67,7 @@ namespace Partie1
             return limite > retraitMax;
         }
 
-        public void AjoutTraansaction(Transaction t)
+        public void AjoutTransaction(Transaction t)
         {
             historique.Add(t);
         }

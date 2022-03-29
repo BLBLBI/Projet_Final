@@ -46,21 +46,11 @@ namespace Partie1
             transactions.Add(t);
         }
 
-        public void ExecTransaction()
+        public void ExecTransactions()
         {
             foreach (Transaction t in transactions)
             {
-                if (t.statut == Transaction.Status.OK)
-                {
-                    if (t.expediteur.Retrait(t.GetMontant()))
-                    {
-                        t.destinataire.Depot(t.GetMontant());
-                    }
-                    else
-                    {
-                        t.statut = Transaction.Status.KO;
-                    }
-                }
+                t.ExecTransaction();
             }
         }
 
@@ -126,7 +116,7 @@ namespace Partie1
                     }
                 }
             }
-            ExecTransaction();
+            ExecTransactions();
         }
 
         public void OutputStatus(string path)

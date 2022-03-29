@@ -39,5 +39,22 @@ namespace Partie1
         {
             return montant;
         }
+
+        public void ExecTransaction()
+        {
+            if (statut == Transaction.Status.OK)
+            {
+                if (expediteur.Retrait(GetMontant()))
+                {
+                    destinataire.Depot(GetMontant());
+                    expediteur.AjoutTransaction(this);
+                    destinataire.AjoutTransaction(this);
+                }
+                else
+                {
+                    statut = Transaction.Status.KO;
+                }
+            }
+        }
     }
 }
