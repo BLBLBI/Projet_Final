@@ -28,7 +28,12 @@ namespace Partie1
                     return false;
                 }
             }
+
+            if (solde < 0d)
+                return false;
+
             comptes.Add(new Compte(id, solde));
+
             return true;
         }
 
