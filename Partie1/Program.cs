@@ -13,6 +13,13 @@ namespace Partie1
             string sttsPath = path + @"\Statut_1.txt";
 
             //TODO: Votre implémentation
+            Banque b = new Banque();
+
+            b.InputComptes(acctPath);
+
+            b.InputTransaction(trxnPath);
+
+            b.OutputStatus(sttsPath);
 
             // Keep the console window open
             Console.WriteLine("Press any key to exit.");
