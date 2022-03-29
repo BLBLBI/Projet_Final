@@ -74,7 +74,7 @@ namespace Partie1__mais_mieux_
                     if (uint.TryParse(t[0], out uint id))
                     {
 
-                        if (double.TryParse(t[1].Replace('.',','), out double s))
+                        if (double.TryParse(t[1].Replace(',','.'), out double s))
                         {
                             CreateCompte(id, s);
                         }
