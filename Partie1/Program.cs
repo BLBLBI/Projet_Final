@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Partie1
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
@@ -12,7 +16,6 @@ namespace Partie1
             string trxnPath = path + @"\Transactions_1.txt";
             string sttsPath = path + @"\Statut_1.txt";
 
-            //TODO: Votre implémentation
             Banque b = new Banque();
 
             b.InputComptes(acctPath);
