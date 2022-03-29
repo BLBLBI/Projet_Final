@@ -18,7 +18,7 @@ namespace Partie1
             comptes.Add(CompteEnv.GetCompteEnv());
         }
 
-        public bool CreateCompte(uint id, double solde = 0d)
+        private bool CreateCompte(uint id, double solde = 0d)
         {
             foreach (Compte c in comptes)
             {
@@ -32,7 +32,7 @@ namespace Partie1
             return true;
         }
 
-        public void CreateTransaction(long id, double montant, Compte exp, Compte dest)
+        private void CreateTransaction(long id, double montant, Compte exp, Compte dest)
         {
             Transaction t = new Transaction(id, montant, exp, dest);
 
@@ -46,7 +46,7 @@ namespace Partie1
             transactions.Add(t);
         }
 
-        public void ExecTransactions()
+        private void ExecTransactions()
         {
             foreach (Transaction t in transactions)
             {

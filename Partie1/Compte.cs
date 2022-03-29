@@ -47,7 +47,7 @@ namespace Partie1
             return true;
         }
 
-        public virtual bool LimiteRetrait(double montant)
+        internal virtual bool LimiteRetrait(double montant)
         {
             int i = 1;
             double limite = 0d;
@@ -59,7 +59,6 @@ namespace Partie1
             {
                 limite += historique[historique.Count - i].GetMontant();
                 i++;
-
             }
 
             limite += montant;

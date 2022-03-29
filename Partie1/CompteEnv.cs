@@ -18,7 +18,7 @@ namespace Partie1
             base.solde = double.MaxValue;
         }
 
-        public override bool LimiteRetrait(double montant)
+        internal override bool LimiteRetrait(double montant)
         {
             return false;
         }
