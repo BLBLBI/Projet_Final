@@ -13,12 +13,17 @@ namespace Partie2
         internal double solde;
         internal static double retraitMax = 1000d;
 
+        internal DateTime creation;
+        internal DateTime resiliation;
+
         internal List<Transaction> historique;
 
-        public Compte(uint id, double soldeInit = 0d)
+        public Compte(uint id, DateTime crea, double soldeInit = 0d)
         {
             compteID = id;
             solde = soldeInit;
+            creation = crea;
+            resiliation = DateTime.MaxValue;
             historique = new List<Transaction>();
         }
 

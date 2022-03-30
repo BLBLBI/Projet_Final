@@ -24,6 +24,11 @@ namespace Partie2
             string mtrlPath = path + @"\Metrologie_1.txt";
 
             //TODO: Votre implémentation
+            Banque b = new Banque();
+
+            b.InputGest(mngrPath);
+            b.InputComptes(acctPath);
+            b.InputTransaction(trxnPath);
 
             // Keep the console window open
             Console.WriteLine("Press any key to exit.");

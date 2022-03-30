@@ -16,6 +16,8 @@ namespace Partie2
 
         public Compte destinataire;
 
+        internal DateTime date;
+
         public Status statut;
 
         public enum Status

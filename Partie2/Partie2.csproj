@@ -46,6 +46,8 @@
     <Compile Include="Banque.cs" />
     <Compile Include="Compte.cs" />
     <Compile Include="CompteEnv.cs" />
+    <Compile Include="Gestionnaire.cs" />
+    <Compile Include="Itype.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transaction.cs" />

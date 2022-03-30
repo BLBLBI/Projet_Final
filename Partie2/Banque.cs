@@ -9,32 +9,40 @@ namespace Partie2
 {
     public class Banque
     {
-        List<Compte> comptes;
+        List<Gestionnaire> gestionnaires;
         List<Transaction> transactions;
 
         public Banque()
         {
-            comptes = new List<Compte>();
+            gestionnaires = new List<Gestionnaire>();
             transactions = new List<Transaction>();
-
-            comptes.Add(CompteEnv.GetCompteEnv());
         }
 
-        private bool CreateCompte(uint id, double solde = 0d)
+        private bool CreateGest(uint id, string type, uint nbTrans)
         {
-            foreach (Compte c in comptes)
+            foreach (Gestionnaire c in gestionnaires)
             {
-                if (c.GetCompteID() == id)
+                if (c.GetGestID() == id)
                 {
                     Console.WriteLine($"id {id} déja existant");
                     return false;
                 }
             }
 
-            if (solde < 0d)
-                return false;
+            Itype t;
+            switch (type)
+            {
+                case "Entreprise":
+                    t = new Entreprise();
+                    break;
+                case "Particulier":
+                    t = new Particulier();
+                    break;
+                default:
+                    return false;
+            }
 
-            comptes.Add(new Compte(id, solde));
+            gestionnaires.Add(new Gestionnaire(id, t, nbTrans));
 
             return true;
         }
@@ -61,6 +69,29 @@ namespace Partie2
             }
         }
 
+        public void InputGest(string path)
+        {
+            using (StreamReader reader = new StreamReader(path))
+            {
+                string l;
+
+                while ((l = reader.ReadLine()) != null)
+                {
+                    string[] t = l.Split(';');
+
+                    if (uint.TryParse(t[0], out uint id))
+                    {
+                        if (uint.TryParse(t[2], out uint nbTrans))
+                        CreateGest(id, t[1], nbTrans);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"id '{t[0]}' erroné");
+                    }
+                }
+            }
+        }
+
         public void InputComptes(string path)
         {
             using (StreamReader reader = new StreamReader(path))
@@ -76,11 +107,11 @@ namespace Partie2
 
                         if (double.TryParse(t[1].Replace('.', ','), out double s))
                         {
-                            CreateCompte(id, s);
+                            //CreateCompte(id, s);
                         }
                         else
                         {
-                            CreateCompte(id);
+                            //CreateCompte(id);
                         }
                     }
                     else
@@ -141,10 +172,10 @@ namespace Partie2
         public override string ToString()
         {
             string s = "";
-            foreach (Compte c in comptes)
+            /*foreach (Compte c in comptes)
             {
                 s += c.ToString() + "\n";
-            }
+            }*/
             return s;
         }
     }
